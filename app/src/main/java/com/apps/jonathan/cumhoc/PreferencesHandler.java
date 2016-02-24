@@ -37,7 +37,13 @@ public class PreferencesHandler {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.preferences_file_key), Context.MODE_PRIVATE);
         Set<String> corrs = sharedPreferences.getStringSet(context.getString(R.string.favoriteCorrelations), null);
         for(String s : corrs) {
-            r.add(getCorrelationFromString(s));
+            FavoritesActivity.FavoriteCorrelation c = getCorrelationFromString(s);
+            if(c.getCorrelationId() == MainActivity.def_id) {
+                c.setIsDefault(true);
+                r.add(0, c);
+            }
+            else
+                r.add(c);
         }
         return r;
     }

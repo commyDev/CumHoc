@@ -53,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setValues() {
         def_id = PreferencesHandler.getDefaultId(this);
-        if(def_id > 0)
+        if(def_id >= RANDOM_CORRELATION_MIN && def_id < RANDOM_CORRELATION_MAX)
             correlationTitle = getString(R.string.defaultCorrelationTitle);
-        else
+        else {
             correlationTitle = getString(R.string.randomCorrelationTitle);
+            def_id = 0;
+        }
     }
 
     private URL getURLbyID(int id) {

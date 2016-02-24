@@ -3,24 +3,31 @@
 
     <string name="credit">All data is provided by Tyler Vigen http://tylervigen.com</string>
 
-    <!-- main activity -->
-    <string name="randomCorrelationTitle">Random Correlation:</string>
-    <string name="defaultCorrelationTitle">Default Correlation:</string>
-    <string name="correlationWith">correlates with</string>
+    <!-- MainActivity: -->
+        <string name="randomCorrelationTitle">Random Correlation:</string>
+        <string name="defaultCorrelationTitle">Default Correlation:</string>
+        <string name="correlationWith">correlates with</string>
 
-    <string name="progressDialogMassage">Loading Correlation…</string>
-    <string name="cPercentagePrefix">Correlation: </string>
+        <string name="progressDialogMassage">Loading Correlation…</string>
+        <string name="cPercentagePrefix">Correlation: </string>
+        <!-- toasts: -->
+        <string name="imageLoadError">Error loading the image…</string>
+        <string name="correlationLoadError">Error loading the correlation, check internet connection</string>
 
-    <!-- web resources -->
+    <!-- FavoritesActivity: -->
+        <string name="FavoritesTitle">Favorite Correlations:</string>
+        <!-- list item layouts: -->
+        <string name="DefaultItemButton">remove as default</string>
+        <string name="RegularItemButton">set as default</string>
+
+    <!-- web resources: -->
     <string name="correlation_id_prefix">http://tylervigen.com/view_correlation?id=</string>
 
-    <!-- toasts: -->
-    <string name="imageLoadError">Error loading the image…</string>
-    <string name="correlationLoadError">Error loading the correlation, check internet connection</string>
 
-    <!-- shared preferences -->
+
+    <!-- shared preferences: -->
     <string name="preferences_file_key">com.apps.jonathan.cumhoc.PREFERENCE_FILE_KEY</string>
-    <string name="defaultId">Default_ID_Key</string>
-    <!-- id of default correlation, 0 if not defined -->
+    <string name="defaultId">Default_ID_Key</string> <!-- id of default correlation, 0 if not defined -->
     <string name="favoriteCorrelations">Favorite_Correlations_Key</string>
+
 </resources>

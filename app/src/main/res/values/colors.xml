@@ -6,4 +6,5 @@
 
     <!-- text colors -->
     <color name="CorrelationWithColor">#fb0000</color>
+    <color name="CorrelationArgColor">#156fa9</color>
 </resources>
