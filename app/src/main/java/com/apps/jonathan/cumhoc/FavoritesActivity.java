@@ -27,13 +27,7 @@ public class FavoritesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorites);
 
         ListView Favorites = (ListView) findViewById(R.id.FavoritesListView);
-        ArrayList<FavoriteCorrelation> l = new ArrayList<>();
-        l.add(new FavoriteCorrelation(100001,"1a", "1b"));
-        l.add(new FavoriteCorrelation(100002,"2a", "2b"));
-        l.add(new FavoriteCorrelation(100003,"3a", "3b"));
-        l.add(new FavoriteCorrelation(100004,"4a", "4b"));
-
-        fa = new FavoritesAdapter(l, this);
+        fa = new FavoritesAdapter(PreferencesHandler.getFavoriteCorrelations(this), this);
         Favorites.setAdapter(fa);
     }
 

@@ -55,7 +55,15 @@
             android:gravity="center_horizontal"
             android:id="@+id/CorrelationPercentage" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:id="@+id/CorrelationButton"/>
+
     </LinearLayout>
+    
+    
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"

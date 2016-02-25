@@ -8,11 +8,14 @@
         <string name="defaultCorrelationTitle">Default Correlation:</string>
         <string name="correlationWith">correlates with</string>
 
+        <string name="correlationAddFavoriteButton">Add to Favorites</string>
+
         <string name="progressDialogMassage">Loading Correlation…</string>
         <string name="cPercentagePrefix">Correlation: </string>
         <!-- toasts: -->
         <string name="imageLoadError">Error loading the image…</string>
         <string name="correlationLoadError">Error loading the correlation, check internet connection</string>
+        <string name="addFavorite">Added to Favorites</string>
 
     <!-- FavoritesActivity: -->
         <string name="FavoritesTitle">Favorite Correlations:</string>

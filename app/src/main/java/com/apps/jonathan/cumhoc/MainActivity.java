@@ -9,12 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.BufferedInputStream;
@@ -25,6 +27,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.BatchUpdateException;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -143,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
                 Elements td_elements = r.getElementsByAttributeValue("colspan", "2");
                 String broad_corr = td_elements.get(0).text(); //Correlation: 0.77621
                 double corr = Double.parseDouble(broad_corr.substring(12));
+                Element elementId = r.getElementsByAttributeValueContaining("href", "view_correlation?id=").get(0);
+                String s = elementId.attr("href");
+                int id = Integer.parseInt(s.substring(20));
 
                 // set views:
                 TextView corr1 = (TextView) findViewById(R.id.CorrelationArg1);
@@ -150,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView cPercentage = (TextView) findViewById(R.id.CorrelationPercentage);
                 TextView corrTitle = (TextView) findViewById(R.id.CorrelationTitle);
                 TextView corrWith = (TextView) findViewById(R.id.CorrelationWith);
+                Button b = (Button) findViewById(R.id.CorrelationButton);
 
                 corr1.setText(c1);
                 corr2.setText(c2);
@@ -157,6 +164,20 @@ public class MainActivity extends AppCompatActivity {
                 corrTitle.setText(correlationTitle);
                 corrWith.setText(getString(R.string.correlationWith));
 
+                FavoritesActivity.FavoriteCorrelation fc = new FavoritesActivity.FavoriteCorrelation(id, c1, c2);
+                b.setText(R.string.correlationAddFavoriteButton);
+                b.setVisibility(Button.VISIBLE);
+                b.setTag(fc);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FavoritesActivity.FavoriteCorrelation fc = (FavoritesActivity.FavoriteCorrelation) v.getTag();
+                        PreferencesHandler.addFavoriteCorrelation(fc, getApplicationContext());
+                        Toast.makeText(getApplicationContext(), R.string.addFavorite, Toast.LENGTH_SHORT).show();
+                        Button b = (Button) v;
+                        b.setVisibility(View.INVISIBLE);
+                    }
+                });
                 new SetCorrelationImage().execute(img_src);
             } else {
                 Toast.makeText(MainActivity.this, R.string.correlationLoadError, Toast.LENGTH_LONG).show();

@@ -23,11 +23,11 @@ public class PreferencesHandler {
 
         Set<String> s = new HashSet<>();
 
-        Set<String> f_set = sharedPreferences.getStringSet(context.getString(R.string.defaultId), s);
+        Set<String> f_set = sharedPreferences.getStringSet(context.getString(R.string.favoriteCorrelations), s);
 
         editor.clear();
         editor.putInt(context.getString(R.string.defaultId), id);
-        editor.putStringSet(context.getString(R.string.defaultId), f_set);
+        editor.putStringSet(context.getString(R.string.favoriteCorrelations), f_set);
         editor.apply();
 
     }
@@ -51,7 +51,7 @@ public class PreferencesHandler {
     public static FavoritesActivity.FavoriteCorrelation getCorrelationFromString(String string) {
         // "id~arg1;arg2"
         String arg1 = string.substring(string.indexOf("~") + 1, string.indexOf(";"));
-        String arg2 = string.substring(string.indexOf(";"));
+        String arg2 = string.substring(string.indexOf(";") + 1);
         int id = Integer.parseInt(string.substring(0, string.indexOf("~")));
         return new FavoritesActivity.FavoriteCorrelation(id, arg1, arg2);
     }
@@ -65,12 +65,19 @@ public class PreferencesHandler {
         Set<String> s = new HashSet<>();
 
         int d_id = sharedPreferences.getInt(context.getString(R.string.defaultId), 0);
-        Set<String> f_set = sharedPreferences.getStringSet(context.getString(R.string.defaultId), s);
+        Set<String> f_set = sharedPreferences.getStringSet(context.getString(R.string.favoriteCorrelations), s);
         f_set.add(corr);
 
         editor.clear();
         editor.putInt(context.getString(R.string.defaultId), d_id);
-        editor.putStringSet(context.getString(R.string.defaultId), f_set);
+        editor.putStringSet(context.getString(R.string.favoriteCorrelations), f_set);
+        editor.apply();
+    }
+
+    public static void clearPrefs(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.preferences_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
         editor.apply();
     }
 
